@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(222 222 222 / 0.1) transparent;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  @apply w-2;
+}
+
+*::-webkit-scrollbar-track {
+  @apply bg-transparent rounded-xl px-2;
+}
+
+*::-webkit-scrollbar-thumb {
+  @apply bg-or-snow/10 border-none rounded-xl;
+}
