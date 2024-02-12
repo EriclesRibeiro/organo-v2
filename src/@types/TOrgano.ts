@@ -21,11 +21,11 @@ export interface TOrganoItem {
     office: string
     linkedin?: string
     github?: string
-    status: Status
 }
 
 export interface TOrgano {
     id: string
+    status: Status
     overview: TOrganoOverview
     items?: TOrganoItem[]
 }

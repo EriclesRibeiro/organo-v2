@@ -1,4 +1,4 @@
-import { TOrgano } from "../@types/TOrgano"
+import { Status, TOrgano } from "../@types/TOrgano"
 import * as Dialog from '@radix-ui/react-dialog'
 import { IoMdClose } from "react-icons/io"
 import { Button, Input } from "./ui"
@@ -46,6 +46,7 @@ export function Header({ addOrgano }: IHeaderProps) {
 
         const validForm: TOrgano = {
             id: uuid(),
+            status: Status.Ativo,
             overview: {
                 createdAt: new Date(),
                 creator: formData.criador,
@@ -54,7 +55,7 @@ export function Header({ addOrgano }: IHeaderProps) {
                 image: formData.imagem,
                 lastUpdate: new Date(),
                 subtitle: formData.subtitulo,
-                title: formData.titulo
+                title: formData.titulo,
             },
             items: []
         }
