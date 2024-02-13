@@ -4,51 +4,14 @@ import { useState } from "react"
 import { SelectOrgano } from "./components/select-organo"
 import { OrganoView } from "./components/organo-view"
 import { Header } from "./components/header"
-
-// const organo: TOrgano[] = [
-//   {
-//     id: '1',
-//     overview: {
-//       creator: 'Ericles Ribeiro',
-//       description: 'Descrição do Organo e mais coisas',
-//       image: 'https://i.redd.it/qq9rnxx4sg971.png',
-//       lastUpdate: new Date(),
-//       createdAt: new Date(),
-//       subtitle: 'Subtítulo do organo',
-//       title: 'Nome do Organo',
-//       email: 'ericles00@hotmail.com'
-//     },
-//     items: [
-//       {
-//         name: 'Ericles Ribeiro',
-//         office: 'Desenvolvedor',
-//         status: Status.Ativo,
-//         github: 'https://github.com/EriclesRibeiro',
-//         linkedin: ''
-//       }
-//     ]
-//   },
-//   {
-//     id: '2',
-//     overview: {
-//       creator: 'Ericles Ribeiro',
-//       description: 'Descrição do Organo e mais coisas',
-//       image: 'https://i.redd.it/qq9rnxx4sg971.png',
-//       lastUpdate: new Date(),
-//       createdAt: new Date(),
-//       subtitle: 'Subtítulo do organo',
-//       title: 'Nome do Organo 2',
-//       email: 'ericles00@hotmail.com'
-//     },
-//     items: []
-//   },
-// ]
+import useLocalStorage from "./hooks/useLocalStorage"
 
 export function App() {
-
-  const [organo, setOrgano] = useState<TOrgano[]>([])
+  const initialValue: TOrgano[] = []
+  const [organo, setOrgano] = useLocalStorage('organo', initialValue)
   const [selectedValue, setSelectedValue] = useState(organo[0]?.id)
   const [organoSelected, setOrganoSelected] = useState(organo[0])
+  console.log(organoSelected)
 
   function handleSelectOrgano(id: string) {
     setSelectedValue(id)

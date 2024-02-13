@@ -1,4 +1,5 @@
-import { ImageListType } from "react-images-uploading"
+import { ptBR } from "date-fns/locale"
+import { formatDistanceToNow } from "date-fns"
 import { Status, TOrganoOverview } from "../@types/TOrgano"
 import { Button } from "./ui"
 
@@ -22,8 +23,8 @@ export function Overview({ data: { overview, status, id }, inactivateOrgano }: I
             <div className="p-5 w-2/3">
                 <div className="flex justify-between">
                     <p className="text-sm font-medium text-or-gray">Visão geral</p>
-                    <div className="inline-flex gap-2">
-                        <p className="text-sm font-light text-or-gray">criado em<span className="pl-1">{overview.createdAt.toISOString()}</span></p>
+                    <div className="inline-flex gap-4">
+                        <p className="text-sm font-light text-or-gray">criado<span className="pl-1">{formatDistanceToNow(new Date(overview.createdAt), { locale: ptBR, addSuffix: true })}</span></p>
                         <p className={`font-medium text-sm ${status ? 'text-or-lime' : 'text-red-500'}`}>{status ? ('Ativo') : ('Inativo')}</p>
                     </div>
                 </div>
@@ -38,7 +39,7 @@ export function Overview({ data: { overview, status, id }, inactivateOrgano }: I
                     </div>
                     <div className="">
                         <p className="text-sm font-light text-or-gray">última atualização</p>
-                        <p className="text-base font-light text-or-snow">{overview.lastUpdate.toISOString()}</p>
+                        <p className="text-base font-light text-or-snow">{formatDistanceToNow(new Date(overview.lastUpdate), { locale: ptBR, addSuffix: true })}</p>
                     </div>
                 </div>
                 <div className="py-2">
