@@ -50,27 +50,27 @@ export function App() {
   const [selectedValue, setSelectedValue] = useState(organo[0]?.id)
   const [organoSelected, setOrganoSelected] = useState(organo[0])
 
-  const handleSelectOrgano = (id: string) => {
+  function handleSelectOrgano(id: string) {
     setSelectedValue(id)
     const selected = organo.find(item => item.id === id)
     setOrganoSelected(selected!)
   }
 
-  const getOverview = (organo: TOrgano) => {
+  function getOverview(organo: TOrgano) {
     return {
       ...organo.overview,
       id: organo.id
     }
   }
 
-  const getOrganoItems = (id: string) => {
+  function getOrganoItems(id: string) {
     const result = organo.find(item => item.id === id)
     if (result?.items) return result.items
 
     return []
   }
 
-  const addOrgano = (data: TOrgano) => {
+  function addOrgano(data: TOrgano) {
     setOrgano([
       ...organo,
       data
@@ -79,6 +79,21 @@ export function App() {
     setSelectedValue(data.id)
     setOrganoSelected(data)
   }
+
+  function inactivateOrgano(id: string) {
+    const organoUpdated = organo.map(item => {
+      if (item.id === id) {
+        setOrganoSelected({ ...item, status: Status.Inativo })
+        return { ...item, status: Status.Inativo }
+      }
+
+      return item;
+    })
+
+    setOrgano(organoUpdated)
+
+  }
+
 
   return (
     <>
@@ -91,7 +106,11 @@ export function App() {
         <SelectOrgano handleSelectedValue={handleSelectOrgano} selectedValue={selectedValue} data={organo.map(getOverview)} />
         {organoSelected && (
           <>
-            <Overview data={organoSelected.overview} />
+            <Overview data={{
+              overview: organoSelected.overview,
+              status: organoSelected.status,
+              id: organoSelected.id
+            }} inactivateOrgano={inactivateOrgano} />
             <OrganoView items={getOrganoItems(selectedValue)} />
           </>
         )}

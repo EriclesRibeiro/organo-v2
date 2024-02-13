@@ -1,8 +1,8 @@
 import { ImageListType } from "react-images-uploading"
 
 export enum Status {
-    Ativo,
     Inativo,
+    Ativo,
 }
 
 export interface TOrganoOverview {

@@ -1,11 +1,12 @@
-import { Status, TOrgano } from "../@types/TOrgano"
 import * as Dialog from '@radix-ui/react-dialog'
 import { IoMdClose } from "react-icons/io"
-import { Button, Input } from "./ui"
-import { Label } from "./ui/label"
 import { ChangeEvent, FormEvent, useState } from "react"
 import { v4 as uuid } from 'uuid'
 import ImageUploading, { ImageListType } from 'react-images-uploading'
+
+import { Label } from "./ui"
+import { Button, Input } from "./ui"
+import { Status, TOrgano } from "../@types/TOrgano"
 
 interface IHeaderProps {
     addOrgano: (data: TOrgano) => void
@@ -31,7 +32,6 @@ export function Header({ addOrgano }: IHeaderProps) {
         imagem: []
     })
 
-    const [image, setImage] = useState([])
     const [open, setOpen] = useState(false)
 
     function handleChange(event: ChangeEvent<HTMLInputElement>) {
@@ -126,6 +126,7 @@ export function Header({ addOrgano }: IHeaderProps) {
                                 <div className="grid w-full mt-4">
                                     <ImageUploading
                                         multiple={false}
+                                        acceptType={['png', 'jpeg', 'jpg']}
                                         onChange={handleChangeImage}
                                         value={formData.imagem}
                                         dataURLKey="data_url">
