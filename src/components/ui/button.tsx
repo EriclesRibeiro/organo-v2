@@ -8,9 +8,9 @@ const buttonVariants = cva(
         variants: {
             variant: {
                 default:
-                    'bg-or-dark/80 hover:bg-or-dark text-or-snow',
+                    'bg-or-dark/80 hover:bg-or-dark disabled:hover:bg-or-dark/80 disabled:opacity-80 disabled:cursor-not-allowed text-or-snow',
                 fullcolor:
-                    'bg-or-lime/80 hover:bg-or-lime text-or-dark',
+                    'bg-or-lime/80 hover:bg-or-lime disabled:hover:bg-or-lime/80 disabled:opacity-80 disabled:cursor-not-allowed text-or-dark',
             },
         },
         defaultVariants: {
