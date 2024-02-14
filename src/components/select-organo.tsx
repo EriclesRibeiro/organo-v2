@@ -1,7 +1,5 @@
 import * as Select from '@radix-ui/react-select';
 import { IoIosArrowDown } from "react-icons/io"
-import { useState } from 'react';
-
 import { TOrganoOverview } from '../@types/TOrgano';
 
 type TOrganoOverviewId = {
