@@ -1,17 +1,17 @@
+import { useState } from "react"
+
+import { Header } from "./components/header"
 import { Overview } from "./components/overview"
 import { Status, TOrgano } from "./@types/TOrgano"
-import { useState } from "react"
-import { SelectOrgano } from "./components/select-organo"
 import { OrganoView } from "./components/organo-view"
-import { Header } from "./components/header"
+import { SelectOrgano } from "./components/select-organo"
+
 import useLocalStorage from "./hooks/useLocalStorage"
 
 export function App() {
-  const initialValue: TOrgano[] = []
-  const [organo, setOrgano] = useLocalStorage('organo', initialValue)
+  const [organo, setOrgano] = useLocalStorage<TOrgano[]>('organo', [])
   const [selectedValue, setSelectedValue] = useState(organo[0]?.id)
   const [organoSelected, setOrganoSelected] = useState(organo[0])
-  console.log(organoSelected)
 
   function handleSelectOrgano(id: string) {
     setSelectedValue(id)

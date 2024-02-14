@@ -1,8 +1,7 @@
-import { Dispatch, useEffect, useState } from "react";
-import { TOrgano } from "../@types/TOrgano";
+import { Dispatch, useEffect, useState } from "react"
 
-export default function useLocalStorage(key: string, initialValue: TOrgano[]): [TOrgano[], Dispatch<React.SetStateAction<TOrgano[]>>] {
-  const [storedValue, setStoredValue] = useState<TOrgano[]>(() => {
+export default function useLocalStorage<T>(key: string, initialValue: T): [T, Dispatch<React.SetStateAction<T>>] {
+  const [storedValue, setStoredValue] = useState<T>(() => {
     const item = localStorage.getItem(key)
     return item ? JSON.parse(item) : initialValue
   })
