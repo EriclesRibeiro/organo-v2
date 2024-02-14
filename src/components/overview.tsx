@@ -1,5 +1,4 @@
 import { ptBR } from "date-fns/locale"
-import { IoIosClose } from "react-icons/io"
 import { formatDistanceToNow } from "date-fns"
 
 import { Status, TOrganoOverview } from "../@types/TOrgano"
