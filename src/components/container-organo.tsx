@@ -1,10 +1,10 @@
 import { TOrganoItem } from "../@types/TOrgano";
 
-interface IOrganoViewProps {
-    items: TOrganoItem[] | []
+interface IContainerOrganoProps {
+    items: TOrganoItem[]
 }
 
-export function OrganoView({ items }: IOrganoViewProps) {
+export function ContainerOrgano({ items }: IContainerOrganoProps) {
     return (
         <section>
             {items.map(item => (<p>{item.name}</p>))}

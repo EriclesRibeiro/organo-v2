@@ -33,7 +33,7 @@ export function SelectOrgano({ data, selectedValue, handleSelectedValue }: ISele
                     <IoIosArrowDown />
                 </Select.Icon>
             </Select.Trigger>
-            <Select.Content className='rounded-xl bg-or-dark-saturated shadow-md shadow-or-dark px-4 py-1 w-48'>
+            <Select.Content className='rounded-xl z-10 bg-or-dark-saturated shadow-md shadow-or-dark px-4 py-1 w-48'>
                 {data.map((item) => (
                     <Select.Item className='text-sm text-or-snow outline-none py-1 hover:text-or-lime transition cursor-pointer' key={item.id} value={item.id}>{item.title}</Select.Item>
                 ))}

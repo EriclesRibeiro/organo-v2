@@ -91,7 +91,7 @@ export function Header({ addOrgano }: IHeaderProps) {
                 <Dialog.Portal>
                     <Dialog.Overlay className="inset-0 fixed bg-or-dark/50" />
                     <Dialog.Content className="inset-0 md:inset-auto fixed bg-or-dark-saturated shadow-or-dark shadow-md px-5 py-5 md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 w-full md:max-w-2xl rounded-xl outline-none">
-                        <div className="px-2 max-h-[750px] overflow-auto">
+                        <div className="px-2 max-h-[calc(100vh-100px)] overflow-auto">
                             <div className="relative flex items-center justify-between">
                                 <Dialog.Close type="button" onClick={() => setOpen(false)} className="absolute top-0 right-0 text-or-gray hover:text-or-lime transition">
                                     <IoMdClose size={20} />

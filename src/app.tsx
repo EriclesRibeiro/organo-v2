@@ -3,18 +3,16 @@ import { useState } from "react"
 import { Header } from "./components/header"
 import { Overview } from "./components/overview"
 import { Status, TOrgano } from "./@types/TOrgano"
-import { OrganoView } from "./components/organo-view"
+import { ContainerOrgano } from "./components/container-organo"
 import { SelectOrgano } from "./components/select-organo"
 
 import useLocalStorage from "./hooks/useLocalStorage"
 
 export function App() {
   const [organo, setOrgano] = useLocalStorage<TOrgano[]>('organo', [])
-  const [selectedValue, setSelectedValue] = useState(organo[0]?.id)
   const [organoSelected, setOrganoSelected] = useState(organo[0])
 
   function handleSelectOrgano(id: string) {
-    setSelectedValue(id)
     const selected = organo.find(item => item.id === id)
     setOrganoSelected(selected!)
   }
@@ -26,20 +24,12 @@ export function App() {
     }
   }
 
-  function getOrganoItems(id: string) {
-    const result = organo.find(item => item.id === id)
-    if (result?.items) return result.items
-
-    return []
-  }
-
   function addOrgano(data: TOrgano) {
     setOrgano([
       ...organo,
       data
     ])
 
-    setSelectedValue(data.id)
     setOrganoSelected(data)
   }
 
@@ -57,6 +47,13 @@ export function App() {
 
   }
 
+  function removeOrgano(id: string) {
+    const result = organo.filter(item => item.id !== id)
+
+    setOrgano(result)
+    setOrganoSelected(result[0])
+  }
+
 
   return (
     <>
@@ -66,15 +63,17 @@ export function App() {
           <h1 className="text-or-snow text-2xl font-bold leading-6">Bem vindo ao Organo</h1>
           <p className="text-or-gray text-base font-light">Vamos organizar nosso tempo juntos</p>
         </div>
-        <SelectOrgano handleSelectedValue={handleSelectOrgano} selectedValue={selectedValue} data={organo.map(getOverview)} />
+        <SelectOrgano handleSelectedValue={handleSelectOrgano} selectedValue={organoSelected?.id} data={organo.map(getOverview)} />
         {organoSelected && (
           <>
             <Overview data={{
               overview: organoSelected.overview,
               status: organoSelected.status,
               id: organoSelected.id
-            }} inactivateOrgano={inactivateOrgano} />
-            <OrganoView items={getOrganoItems(selectedValue)} />
+            }} inactivateOrgano={inactivateOrgano} removeOrgano={removeOrgano} />
+            {organoSelected.items && (
+              <ContainerOrgano items={organoSelected.items} />
+            )}
           </>
         )}
       </div>
