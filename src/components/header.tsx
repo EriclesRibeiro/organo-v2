@@ -7,23 +7,16 @@ import ImageUploading, { ImageListType } from 'react-images-uploading'
 import { Label } from "./ui"
 import { Button, Input } from "./ui"
 import { Status, TOrgano } from "../@types/TOrgano"
+import useDialog from '../hooks/useDialog'
+import { TFormOrgano } from '../@types/TFormOrgano'
 
 interface IHeaderProps {
     addOrgano: (data: TOrgano) => void
 }
 
-interface IFormData {
-    titulo: string,
-    subtitulo: string,
-    criador: string,
-    email: string,
-    descricao: string,
-    imagem: ImageListType | []
-}
-
 export function Header({ addOrgano }: IHeaderProps) {
 
-    const [formData, setFormData] = useState<IFormData>({
+    const [formData, setFormData] = useState<TFormOrgano>({
         titulo: '',
         subtitulo: '',
         criador: '',
@@ -32,7 +25,7 @@ export function Header({ addOrgano }: IHeaderProps) {
         imagem: []
     })
 
-    const [open, setOpen] = useState(false)
+    const [open, setOpen] = useDialog(false)
 
     function handleChange(event: ChangeEvent<HTMLInputElement>) {
         setFormData({

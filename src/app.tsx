@@ -2,7 +2,7 @@ import { useState } from "react"
 
 import { Header } from "./components/header"
 import { Overview } from "./components/overview"
-import { Status, StatusItem, TOrgano, TOrganoItem } from "./@types/TOrgano"
+import { Status, TOrgano } from "./@types/TOrgano"
 import { SelectOrgano } from "./components/select-organo"
 
 import useLocalStorage from "./hooks/useLocalStorage"
@@ -55,117 +55,6 @@ export function App() {
     setOrganoSelected(result[0])
   }
 
-  const items: TOrganoItem[] = [
-    {
-      id: '1',
-      name: 'Ericles Ribeiro',
-      office: 'Desenvolvedor',
-      github: 'EriclesRibeiro',
-      linkedin: 'ericles-ribeiro',
-      status: StatusItem.Ativo,
-      categorie: 'Back-End'
-    },
-    {
-      id: '2',
-      name: 'Ericles Ribeiro - Cronapp',
-      office: 'Designer',
-      github: 'EriclesRibeiro-Cronapp',
-      linkedin: 'ericles-ribeiro',
-      status: StatusItem.Ativo,
-      categorie: 'Front-End'
-    },
-    {
-      id: '3',
-      name: 'Ericles Ribeiro - Cronapp',
-      office: 'Designer',
-      github: 'EriclesRibeiro-Cronapp',
-      linkedin: 'ericles-ribeiro',
-      status: StatusItem.Ativo,
-      categorie: 'Front-End'
-    },
-    {
-      id: '4',
-      name: 'Ericles Ribeiro - Cronapp',
-      office: 'Designer',
-      github: 'EriclesRibeiro-Cronapp',
-      linkedin: 'ericles-ribeiro',
-      status: StatusItem.Ativo,
-      categorie: 'Front-End'
-    },
-    {
-      id: '5',
-      name: 'Ericles Ribeiro - Cronapp',
-      office: 'Designer',
-      github: 'EriclesRibeiro-Cronapp',
-      linkedin: 'ericles-ribeiro',
-      status: StatusItem.Ativo,
-      categorie: 'Front-End'
-    },
-    {
-      id: '6',
-      name: 'Ericles Ribeiro - Cronapp',
-      office: 'Designer',
-      github: 'EriclesRibeiro-Cronapp',
-      linkedin: 'ericles-ribeiro',
-      status: StatusItem.Ativo,
-      categorie: 'Front-End'
-    },
-    {
-      id: '7',
-      name: 'Ericles Ribeiro - Cronapp',
-      office: 'Designer',
-      github: 'EriclesRibeiro-Cronapp',
-      linkedin: 'ericles-ribeiro',
-      status: StatusItem.Ativo,
-      categorie: 'Front-End'
-    },
-    {
-      id: '8',
-      name: 'Ericles Ribeiro - Cronapp',
-      office: 'Designer',
-      github: 'EriclesRibeiro-Cronapp',
-      linkedin: 'ericles-ribeiro',
-      status: StatusItem.Ativo,
-      categorie: 'Front-End'
-    },
-    {
-      id: '9',
-      name: 'Ericles Ribeiro - Cronapp',
-      office: 'Designer',
-      github: 'EriclesRibeiro-Cronapp',
-      linkedin: 'ericles-ribeiro',
-      status: StatusItem.Ativo,
-      categorie: 'Front-End'
-    },
-    {
-      id: '10',
-      name: 'Ericles Ribeiro - Cronapp',
-      office: 'Designer',
-      github: 'EriclesRibeiro-Cronapp',
-      linkedin: 'ericles-ribeiro',
-      status: StatusItem.Ativo,
-      categorie: 'Back-End'
-    },
-    {
-      id: '11',
-      name: 'Ericles Ribeiro - Cronapp',
-      office: 'Designer',
-      github: 'EriclesRibeiro-Cronapp',
-      linkedin: 'ericles-ribeiro',
-      status: StatusItem.Ativo,
-      categorie: 'Front-End'
-    },
-    {
-      id: '12',
-      name: 'Ericles Ribeiro - Cronapp',
-      office: 'Designer',
-      github: 'EriclesRibeiro-Cronapp',
-      linkedin: 'ericles-ribeiro',
-      status: StatusItem.Ativo,
-      categorie: 'DevOps'
-    },
-  ]
-
   const organoCategories: string[] = [
     'Front-End',
     'Back-End',
@@ -188,11 +77,9 @@ export function App() {
               inactivateOrgano={inactivateOrgano}
               removeOrgano={removeOrgano} />
 
-            {organoSelected.items && (
-              <ContainerCards
-                categories={organoCategories}
-                data={items} />
-            )}
+            <ContainerCards
+              categories={organoCategories}
+              data={organoSelected.items!} />
           </>
         )}
       </ContainerMaxWidth>

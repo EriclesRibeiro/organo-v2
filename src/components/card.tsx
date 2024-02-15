@@ -14,7 +14,7 @@ export function Card({ data }: ICardProps) {
                 <div className="overflow-hidden rounded-xl w-10 h-10 border border-or-lime/80">
                     <img className="object-cover" src={`http://github.com/${data.github}.png`} alt={data.name} />
                 </div>
-                <span className="font-medium text-sm text-or-lime">{data.status ? 'Ativo' : 'Inativo'}</span>
+                <span className="font-medium text-sm text-or-lime/80 group-hover:text-or-lime transition">{data.status ? 'Ativo' : 'Inativo'}</span>
             </div>
             <div className="flex flex-col py-2">
                 <p className="leading-none text-or-snow text-sm font-normal whitespace-nowrap overflow-hidden overflow-ellipsis">{data.name}</p>
