@@ -5,7 +5,7 @@ export enum Status {
     Ativo,
 }
 
-export interface TOrganoOverview {
+export type TOrganoOverview = {
     title: string
     subtitle: string
     creator: string
@@ -16,7 +16,7 @@ export interface TOrganoOverview {
     email: string
 }
 
-export interface TOrganoItem {
+export type TOrganoItem = {
     id: string
     name: string
     office: string
@@ -26,7 +26,7 @@ export interface TOrganoItem {
     categorie: string
 }
 
-export interface TOrgano {
+export type TOrgano = {
     id: string
     status: Status
     overview: TOrganoOverview

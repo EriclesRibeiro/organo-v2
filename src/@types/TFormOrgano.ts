@@ -8,12 +8,3 @@ export type TFormOrgano = {
     descricao: string,
     imagem: ImageListType | []
 }
-
-export type TFormCard = {
-    titulo: string,
-    subtitulo: string,
-    criador: string,
-    email: string,
-    descricao: string,
-    imagem: ImageListType | []
-}
