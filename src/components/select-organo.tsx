@@ -16,8 +16,7 @@ interface ISelectOrganoProps {
 
 export function SelectOrgano({ data, selectedValue, handleSelectedValue }: ISelectOrganoProps) {
 
-    // const [selectedValue, setSelectedValue] = useState(data[0].id); // Supondo que haja um valor inicial
-    const handleChangeSelection = (value: string) => {
+    function handleChangeSelection(value: string) {
         handleSelectedValue(value)
     }
 

@@ -5,6 +5,11 @@ export enum Status {
     Ativo,
 }
 
+export enum StatusItem {
+    Inativo,
+    Ativo
+}
+
 export interface TOrganoOverview {
     title: string
     subtitle: string
@@ -17,10 +22,13 @@ export interface TOrganoOverview {
 }
 
 export interface TOrganoItem {
+    id: string
     name: string
     office: string
     linkedin?: string
-    github?: string
+    github?: string,
+    status: StatusItem,
+    categorie: string
 }
 
 export interface TOrgano {

@@ -2,11 +2,12 @@ import { useState } from "react"
 
 import { Header } from "./components/header"
 import { Overview } from "./components/overview"
-import { Status, TOrgano } from "./@types/TOrgano"
-import { ContainerOrgano } from "./components/container-organo"
+import { Status, StatusItem, TOrgano, TOrganoItem } from "./@types/TOrgano"
 import { SelectOrgano } from "./components/select-organo"
 
 import useLocalStorage from "./hooks/useLocalStorage"
+import { ContainerMaxWidth } from "./components/container-max-width"
+import { ContainerCards } from "./components/container-cards"
 
 export function App() {
   const [organo, setOrgano] = useLocalStorage<TOrgano[]>('organo', [])
@@ -54,29 +55,147 @@ export function App() {
     setOrganoSelected(result[0])
   }
 
+  const items: TOrganoItem[] = [
+    {
+      id: '1',
+      name: 'Ericles Ribeiro',
+      office: 'Desenvolvedor',
+      github: 'EriclesRibeiro',
+      linkedin: 'ericles-ribeiro',
+      status: StatusItem.Ativo,
+      categorie: 'Back-End'
+    },
+    {
+      id: '2',
+      name: 'Ericles Ribeiro - Cronapp',
+      office: 'Designer',
+      github: 'EriclesRibeiro-Cronapp',
+      linkedin: 'ericles-ribeiro',
+      status: StatusItem.Ativo,
+      categorie: 'Front-End'
+    },
+    {
+      id: '3',
+      name: 'Ericles Ribeiro - Cronapp',
+      office: 'Designer',
+      github: 'EriclesRibeiro-Cronapp',
+      linkedin: 'ericles-ribeiro',
+      status: StatusItem.Ativo,
+      categorie: 'Front-End'
+    },
+    {
+      id: '4',
+      name: 'Ericles Ribeiro - Cronapp',
+      office: 'Designer',
+      github: 'EriclesRibeiro-Cronapp',
+      linkedin: 'ericles-ribeiro',
+      status: StatusItem.Ativo,
+      categorie: 'Front-End'
+    },
+    {
+      id: '5',
+      name: 'Ericles Ribeiro - Cronapp',
+      office: 'Designer',
+      github: 'EriclesRibeiro-Cronapp',
+      linkedin: 'ericles-ribeiro',
+      status: StatusItem.Ativo,
+      categorie: 'Front-End'
+    },
+    {
+      id: '6',
+      name: 'Ericles Ribeiro - Cronapp',
+      office: 'Designer',
+      github: 'EriclesRibeiro-Cronapp',
+      linkedin: 'ericles-ribeiro',
+      status: StatusItem.Ativo,
+      categorie: 'Front-End'
+    },
+    {
+      id: '7',
+      name: 'Ericles Ribeiro - Cronapp',
+      office: 'Designer',
+      github: 'EriclesRibeiro-Cronapp',
+      linkedin: 'ericles-ribeiro',
+      status: StatusItem.Ativo,
+      categorie: 'Front-End'
+    },
+    {
+      id: '8',
+      name: 'Ericles Ribeiro - Cronapp',
+      office: 'Designer',
+      github: 'EriclesRibeiro-Cronapp',
+      linkedin: 'ericles-ribeiro',
+      status: StatusItem.Ativo,
+      categorie: 'Front-End'
+    },
+    {
+      id: '9',
+      name: 'Ericles Ribeiro - Cronapp',
+      office: 'Designer',
+      github: 'EriclesRibeiro-Cronapp',
+      linkedin: 'ericles-ribeiro',
+      status: StatusItem.Ativo,
+      categorie: 'Front-End'
+    },
+    {
+      id: '10',
+      name: 'Ericles Ribeiro - Cronapp',
+      office: 'Designer',
+      github: 'EriclesRibeiro-Cronapp',
+      linkedin: 'ericles-ribeiro',
+      status: StatusItem.Ativo,
+      categorie: 'Back-End'
+    },
+    {
+      id: '11',
+      name: 'Ericles Ribeiro - Cronapp',
+      office: 'Designer',
+      github: 'EriclesRibeiro-Cronapp',
+      linkedin: 'ericles-ribeiro',
+      status: StatusItem.Ativo,
+      categorie: 'Front-End'
+    },
+    {
+      id: '12',
+      name: 'Ericles Ribeiro - Cronapp',
+      office: 'Designer',
+      github: 'EriclesRibeiro-Cronapp',
+      linkedin: 'ericles-ribeiro',
+      status: StatusItem.Ativo,
+      categorie: 'DevOps'
+    },
+  ]
+
+  const organoCategories: string[] = [
+    'Front-End',
+    'Back-End',
+    'DevOps',
+  ]
 
   return (
     <>
       <Header addOrgano={addOrgano} />
-      <div className="max-w-6xl w-full bg-transparent mx-auto px-3">
-        <div className="text-center py-5">
-          <h1 className="text-or-snow text-2xl font-bold leading-6">Bem vindo ao Organo</h1>
-          <p className="text-or-gray text-base font-light">Vamos organizar nosso tempo juntos</p>
-        </div>
+      <ContainerMaxWidth>
         <SelectOrgano handleSelectedValue={handleSelectOrgano} selectedValue={organoSelected?.id} data={organo.map(getOverview)} />
         {organoSelected && (
           <>
-            <Overview data={{
-              overview: organoSelected.overview,
-              status: organoSelected.status,
-              id: organoSelected.id
-            }} inactivateOrgano={inactivateOrgano} removeOrgano={removeOrgano} />
+            <Overview
+              data={{
+                overview: organoSelected.overview,
+                status: organoSelected.status,
+                id: organoSelected.id
+              }}
+              inactivateOrgano={inactivateOrgano}
+              removeOrgano={removeOrgano} />
+
             {organoSelected.items && (
-              <ContainerOrgano items={organoSelected.items} />
+              <ContainerCards
+                categories={organoCategories}
+                data={items} />
             )}
           </>
         )}
-      </div>
+      </ContainerMaxWidth>
     </>
   )
 }
