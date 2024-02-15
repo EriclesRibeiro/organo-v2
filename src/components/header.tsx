@@ -86,7 +86,7 @@ export function Header({ addOrgano }: IHeaderProps) {
             <h1 className="text-2xl font-black text-or-snow pointer-events-none">OR</h1>
             <Dialog.Root onOpenChange={resetFormData} open={open}>
                 <Dialog.Trigger type="button" onClick={() => setOpen(true)}>
-                    <span className="text-base text-or-lime-darkest hover:text-or-lime transition font-medium cursor-pointer">+ Adicionar Organo</span>
+                    <span className="text-base text-or-lime/80 hover:text-or-lime transition font-medium cursor-pointer">+ Adicionar Organo</span>
                 </Dialog.Trigger>
                 <Dialog.Portal>
                     <Dialog.Overlay className="inset-0 fixed bg-or-dark/50" />
