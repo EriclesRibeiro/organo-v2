@@ -7,7 +7,7 @@ interface ICardProps {
     data: TOrganoItem
 }
 
-export function Card({ data }: ICardProps) {
+const Card = ({ data }: ICardProps) => {
     return (
         <div className='group p-3 rounded-xl bg-or-dark-saturated hover:bg-or-dark hover:ring-1 hover:ring-or-lime transition w-full sm:w-[232px] cursor-pointer'>
             <div className="flex justify-between">
@@ -27,3 +27,5 @@ export function Card({ data }: ICardProps) {
         </div>
     )
 }
+
+export default Card

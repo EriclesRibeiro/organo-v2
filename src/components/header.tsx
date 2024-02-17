@@ -10,11 +10,11 @@ import { Status, TOrgano } from "../@types/TOrgano"
 import useDialog from '../hooks/useDialog'
 import { TFormOrgano } from '../@types/TFormOrgano'
 
-interface IHeaderProps {
+type THeaderProps = {
     addOrgano: (data: TOrgano) => void
 }
 
-export function Header({ addOrgano }: IHeaderProps) {
+const Header = ({ addOrgano }: THeaderProps) => {
 
     const [formData, setFormData] = useState<TFormOrgano>({
         titulo: '',
@@ -92,7 +92,7 @@ export function Header({ addOrgano }: IHeaderProps) {
                                 <h1 className="text-xl font-medium text-or-snow">Adicionar Organo</h1>
                             </div>
                             <form onSubmit={handleSubmit} className="flex flex-col mt-5">
-                                <div className="flex flex-col md:flex-row gap-2">
+                                <div className="flex flex-col md:flex-row gap-4">
                                     <div className="grid w-full md:w-1/2">
                                         <Label className="" htmlFor="titulo">Título</Label>
                                         <Input onChange={handleChange} name="titulo" />
@@ -102,7 +102,7 @@ export function Header({ addOrgano }: IHeaderProps) {
                                         <Input onChange={handleChange} name="subtitulo" />
                                     </div>
                                 </div>
-                                <div className="flex flex-col md:flex-row gap-2 mt-4">
+                                <div className="flex flex-col md:flex-row gap-4 mt-4">
                                     <div className="grid w-full md:w-1/3">
                                         <Label className="" htmlFor="criador">Criador</Label>
                                         <Input onChange={handleChange} name="criador" />
@@ -169,3 +169,5 @@ export function Header({ addOrgano }: IHeaderProps) {
         </div>
     )
 }
+
+export default Header

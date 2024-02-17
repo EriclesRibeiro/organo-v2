@@ -1,13 +1,13 @@
 import { useState } from "react"
 
-import { Header } from "./components/header"
-import { Overview } from "./components/overview"
+import Header from "./components/header"
+import Overview from "./components/overview"
 import { Status, TOrgano } from "./@types/TOrgano"
-import { SelectOrgano } from "./components/select-organo"
+import SelectOrgano from "./components/select-organo"
 
 import useLocalStorage from "./hooks/useLocalStorage"
-import { ContainerMaxWidth } from "./components/container-max-width"
-import { ContainerCards } from "./components/container-cards"
+import ContainerMaxWidth from "./components/container-max-width"
+import ContainerCards from "./components/container-cards"
 
 export function App() {
   const [organo, setOrgano] = useLocalStorage<TOrgano[]>('organo', [])

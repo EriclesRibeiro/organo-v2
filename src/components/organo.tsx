@@ -1,12 +1,12 @@
 import { TOrganoItem } from "../@types/TOrgano"
-import { Card } from "./card"
+import Card from "./card"
 
 interface IOrganoProps {
     items: TOrganoItem[]
     categorie: string
 }
 
-export function Organo({ items, categorie }: IOrganoProps) {
+const Organo = ({ items, categorie }: IOrganoProps) => {
     return (
         items.length > 0 && (
             <div className="flex flex-col items-center mb-5">
@@ -20,3 +20,5 @@ export function Organo({ items, categorie }: IOrganoProps) {
         )
     )
 }
+
+export default Organo
