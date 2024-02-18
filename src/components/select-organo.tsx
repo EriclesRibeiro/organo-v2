@@ -14,7 +14,7 @@ interface ISelectOrganoProps {
     handleSelectedValue: (value: string) => void
 }
 
-const SelectOrgano = ({ data, selectedValue, handleSelectedValue }: ISelectOrganoProps) => {
+export function SelectOrgano({ data, selectedValue, handleSelectedValue }: ISelectOrganoProps) {
 
     function handleChangeSelection(value: string) {
         handleSelectedValue(value)
@@ -36,7 +36,5 @@ const SelectOrgano = ({ data, selectedValue, handleSelectedValue }: ISelectOrgan
                 ))}
             </Select.Content>
         </Select.Root>
-    );
+    )
 }
-
-export default SelectOrgano

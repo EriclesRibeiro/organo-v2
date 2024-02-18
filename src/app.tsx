@@ -2,15 +2,22 @@ import { useState } from "react"
 
 import Header from "./components/header"
 import Overview from "./components/overview"
-import { Status, TOrgano } from "./@types/TOrgano"
+import { Status, TOrgano, TOrganoItem } from "./@types/TOrgano"
 import SelectOrgano from "./components/select-organo"
 
 import useLocalStorage from "./hooks/useLocalStorage"
 import ContainerMaxWidth from "./components/container-max-width"
 import ContainerCards from "./components/container-cards"
+import { TCategorie } from "./@types/TCategorie"
 
 export function App() {
+  const organoCategories: TCategorie[] = [
+    { id: '1', name: 'Front-End' },
+    { id: '2', name: 'Back-End' },
+    { id: '3', name: 'DevOps' }
+  ]
   const [organo, setOrgano] = useLocalStorage<TOrgano[]>('organo', [])
+  const [categories, setCategories] = useLocalStorage<TCategorie[]>('categorie', organoCategories)
   const [organoSelected, setOrganoSelected] = useState(organo[0])
 
   function handleSelectOrgano(id: string) {
@@ -34,6 +41,10 @@ export function App() {
     setOrganoSelected(data)
   }
 
+  function addOrganoItem(data: TOrganoItem) {
+    console.log(data)
+  }
+
   function inactivateOrgano(id: string) {
     const organoUpdated = organo.map(item => {
       if (item.id === id) {
@@ -55,12 +66,6 @@ export function App() {
     setOrganoSelected(result[0])
   }
 
-  const organoCategories: string[] = [
-    'Front-End',
-    'Back-End',
-    'DevOps',
-  ]
-
   return (
     <>
       <Header addOrgano={addOrgano} />
@@ -78,7 +83,7 @@ export function App() {
               removeOrgano={removeOrgano} />
 
             <ContainerCards
-              categories={organoCategories}
+              categories={categories}
               data={organoSelected.items!} />
           </>
         )}

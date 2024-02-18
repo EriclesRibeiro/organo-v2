@@ -4,9 +4,9 @@ interface IContainerMaxWidthProps {
     children: ReactNode
 }
 
-const ContainerMaxWidth = (
+export function ContainerMaxWidth(
     { children }: IContainerMaxWidthProps
-) => {
+) {
     return (
         <div className="max-w-[1160px] w-full bg-transparent mx-auto px-3">
             <div className="text-center py-5">
@@ -17,5 +17,3 @@ const ContainerMaxWidth = (
         </div>
     )
 }
-
-export default ContainerMaxWidth

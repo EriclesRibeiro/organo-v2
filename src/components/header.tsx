@@ -14,7 +14,7 @@ type THeaderProps = {
     addOrgano: (data: TOrgano) => void
 }
 
-const Header = ({ addOrgano }: THeaderProps) => {
+export function Header({ addOrgano }: THeaderProps) {
 
     const [formData, setFormData] = useState<TFormOrgano>({
         titulo: '',
@@ -169,5 +169,3 @@ const Header = ({ addOrgano }: THeaderProps) => {
         </div>
     )
 }
-
-export default Header

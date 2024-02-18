@@ -14,7 +14,7 @@ interface IOverviewProps {
     removeOrgano: (id: string) => void
 }
 
-const Overview = ({ data: { overview, status, id }, inactivateOrgano, removeOrgano }: IOverviewProps) => {
+export function Overview({ data: { overview, status, id }, inactivateOrgano, removeOrgano }: IOverviewProps) {
 
     function handleInactivateOrgano() {
         inactivateOrgano(id)
@@ -71,5 +71,3 @@ const Overview = ({ data: { overview, status, id }, inactivateOrgano, removeOrga
         </section>
     )
 }
-
-export default Overview
