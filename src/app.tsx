@@ -1,13 +1,13 @@
 import { useState } from "react"
 
-import Header from "./components/header"
-import Overview from "./components/overview"
+import {Header} from "./components/header"
+import {Overview} from "./components/overview"
 import { Status, TOrgano, TOrganoItem } from "./@types/TOrgano"
-import SelectOrgano from "./components/select-organo"
+import {SelectOrgano} from "./components/select-organo"
 
 import useLocalStorage from "./hooks/useLocalStorage"
-import ContainerMaxWidth from "./components/container-max-width"
-import ContainerCards from "./components/container-cards"
+import {ContainerMaxWidth} from "./components/container-max-width"
+import {ContainerCards} from "./components/container-cards"
 import { TCategorie } from "./@types/TCategorie"
 
 export function App() {
@@ -16,12 +16,12 @@ export function App() {
     { id: '2', name: 'Back-End' },
     { id: '3', name: 'DevOps' }
   ]
-  const [organo, setOrgano] = useLocalStorage<TOrgano[]>('organo', [])
+  const [organos, setOrganos] = useLocalStorage<TOrgano[]>('organo', [])
   const [categories, setCategories] = useLocalStorage<TCategorie[]>('categorie', organoCategories)
-  const [organoSelected, setOrganoSelected] = useState(organo[0])
+  const [organoSelected, setOrganoSelected] = useState(organos[0])
 
   function handleSelectOrgano(id: string) {
-    const selected = organo.find(item => item.id === id)
+    const selected = organos.find(item => item.id === id)
     setOrganoSelected(selected!)
   }
 
@@ -33,8 +33,8 @@ export function App() {
   }
 
   function addOrgano(data: TOrgano) {
-    setOrgano([
-      ...organo,
+    setOrganos([
+      ...organos,
       data
     ])
 
@@ -42,11 +42,21 @@ export function App() {
   }
 
   function addOrganoItem(data: TOrganoItem) {
-    console.log(data)
+    const organoUpdated = organos.map(organo => {
+      if(organo.id === organoSelected.id) {
+        organo.items?.push(data)
+        setOrganoSelected(organo)
+        
+        return organo
+      }
+      return organo
+    })
+
+    setOrganos(organoUpdated)
   }
 
   function inactivateOrgano(id: string) {
-    const organoUpdated = organo.map(item => {
+    const organoUpdated = organos.map(item => {
       if (item.id === id) {
         setOrganoSelected({ ...item, status: Status.Inativo })
         return { ...item, status: Status.Inativo }
@@ -55,14 +65,14 @@ export function App() {
       return item;
     })
 
-    setOrgano(organoUpdated)
+    setOrganos(organoUpdated)
 
   }
 
   function removeOrgano(id: string) {
-    const result = organo.filter(item => item.id !== id)
+    const result = organos.filter(item => item.id !== id)
 
-    setOrgano(result)
+    setOrganos(result)
     setOrganoSelected(result[0])
   }
 
@@ -70,7 +80,10 @@ export function App() {
     <>
       <Header addOrgano={addOrgano} />
       <ContainerMaxWidth>
-        <SelectOrgano handleSelectedValue={handleSelectOrgano} selectedValue={organoSelected?.id} data={organo.map(getOverview)} />
+        <SelectOrgano 
+          handleSelectedValue={handleSelectOrgano} 
+          selectedValue={organoSelected?.id} 
+          data={organos.map(getOverview)} />
         {organoSelected && (
           <>
             <Overview
@@ -83,8 +96,10 @@ export function App() {
               removeOrgano={removeOrgano} />
 
             <ContainerCards
+              status={organoSelected.status}
               categories={categories}
-              data={organoSelected.items!} />
+              data={organoSelected.items!} 
+              addOrganoItem={addOrganoItem} />
           </>
         )}
       </ContainerMaxWidth>

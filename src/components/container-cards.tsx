@@ -13,13 +13,20 @@ import { TCategorie } from "../@types/TCategorie"
 interface IContainerCardsProps {
     categories: TCategorie[]
     data: TOrganoItem[]
+    addOrganoItem: (data: TOrganoItem) => void,
+    status: Status
 }
 
-export function ContainerCards({ categories, data }: IContainerCardsProps) {
+export function ContainerCards({ 
+    categories, 
+    data, 
+    addOrganoItem,
+    status 
+}: IContainerCardsProps) {
     const [search, setSearch] = useState<string>('')
     const [categorieSelected, setCategorieSelected] = useState<TCategorie>(categories[0])
     const [formData, setFormData] = useState<TOrganoItem>({
-        categorie: '',
+        categorie: categories[0].id,
         id: '',
         name: '',
         office: '',
@@ -67,7 +74,7 @@ export function ContainerCards({ categories, data }: IContainerCardsProps) {
             id: uuid()
         }
 
-        data.push(validForm)
+        addOrganoItem(validForm)
         closeDialog()
     }
 
@@ -87,6 +94,7 @@ export function ContainerCards({ categories, data }: IContainerCardsProps) {
                     <Button
                         type="button"
                         variant={"fullcolor"}
+                        disabled={status === 0}
                         className="w-full md:w-80 font-medium"
                         onClick={openDialog}>+ Adicionar</Button>
                 </Dialog.Trigger>
@@ -108,7 +116,6 @@ export function ContainerCards({ categories, data }: IContainerCardsProps) {
                                 <div className="flex flex-col md:flex-row gap-4 mt-4">
                                     <div className="grid w-full md:w-1/3">
                                         <Label className="" htmlFor="subtitulo">Categoria</Label>
-                                        {/* <Input onChange={handleChangeForm} name="categorie" /> */}
                                         <Select
                                             data={categories}
                                             selectedValue={categorieSelected?.id}
@@ -132,9 +139,13 @@ export function ContainerCards({ categories, data }: IContainerCardsProps) {
                                 </div>
                                 <div className="flex flex-col md:flex-row gap-4 md:justify-end mt-4">
                                     <Dialog.Close onClick={closeDialog} type="button" asChild>
-                                        <Button type="button" variant={"default"} className="w-full md:w-48"><span className="font-medium ">Cancelar</span></Button>
+                                        <Button type="button" variant={"default"} className="w-full md:w-48">
+                                            <span className="font-medium ">Cancelar</span>
+                                            </Button>
                                     </Dialog.Close>
-                                    <Button type="submit" variant={"fullcolor"} className="w-full md:w-48"><span className="font-medium">Adicionar</span></Button>
+                                    <Button type="submit" variant={"fullcolor"} className="w-full md:w-48">
+                                        <span className="font-medium">Adicionar</span>
+                                        </Button>
                                 </div>
                             </form>
                         </div>
